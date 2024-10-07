@@ -2,7 +2,26 @@
 
 using namespace std;
 
+// Конструктор по умолчанию
 ProteinSequence::ProteinSequence() {}
+
+// Конструктор инициализации
+ProteinSequence::ProteinSequence(const std::vector<AminoAcid>& aminoAcids)
+    : aminoAcids(aminoAcids) {
+}
+
+// Конструктор копирования
+ProteinSequence::ProteinSequence(const ProteinSequence& other)
+    : aminoAcids(other.aminoAcids) {
+}
+
+// Оператор присваивания
+ProteinSequence& ProteinSequence::operator=(const ProteinSequence& other) {
+    if (this != &other) {
+        aminoAcids = other.aminoAcids; // Копируем вектор аминокислот
+    }
+    return *this;
+}
 
 void ProteinSequence::addCodon(const string& codon) {
     char aminoAcid = translator.translate(codon);

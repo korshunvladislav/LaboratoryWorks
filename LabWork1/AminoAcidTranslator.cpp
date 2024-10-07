@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Конструктор по умолчанию
 AminoAcidTranslator::AminoAcidTranslator() {
     codonTable["UUU"] = 'F'; // Фенилаланин
     codonTable["UUC"] = 'F';
@@ -58,6 +59,22 @@ AminoAcidTranslator::AminoAcidTranslator() {
     codonTable["GGC"] = 'G';
     codonTable["GGA"] = 'G';
     codonTable["GGG"] = 'G';
+}
+
+// Конструктор инициализации
+AminoAcidTranslator::AminoAcidTranslator(const map<string, char>& customCodonTable)
+    : codonTable(customCodonTable) {}
+
+// Конструктор копирования
+AminoAcidTranslator::AminoAcidTranslator(const AminoAcidTranslator& other)
+    : codonTable(other.codonTable) {}
+
+// Оператор присваивания
+AminoAcidTranslator& AminoAcidTranslator::operator=(const AminoAcidTranslator& other) {
+    if (this != &other) {
+        codonTable = other.codonTable; // Копируем таблицу кодонов
+    }
+    return *this;
 }
 
 char AminoAcidTranslator::translate(const string& codon) {

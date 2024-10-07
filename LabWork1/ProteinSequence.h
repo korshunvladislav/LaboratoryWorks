@@ -4,12 +4,16 @@
 #include <vector>
 #include <string>
 #include "AminoAcidTranslator.h"
+#include "AminoAcid.h"
 
 using namespace std;
 
 class ProteinSequence {
 public:
-    ProteinSequence();
+    ProteinSequence(); // Конструктор по умолчанию
+    ProteinSequence(const vector<AminoAcid>& aminoAcids); // Конструктор инициализации
+    ProteinSequence(const ProteinSequence& other); // Конструктор копирования
+    ProteinSequence& operator=(const ProteinSequence& other); // Оператор присваивания
 
     void addCodon(const string& codon);
     string getSequence() const; // Возвращаем последовательность аминокислот
