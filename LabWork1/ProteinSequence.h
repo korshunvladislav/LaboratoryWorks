@@ -11,7 +11,7 @@ using namespace std;
 class ProteinSequence {
 public:
     ProteinSequence(); // Конструктор по умолчанию
-    ProteinSequence(const vector<AminoAcid>& aminoAcids); // Конструктор инициализации
+    ProteinSequence(const vector<char>& aminoAcids); // Конструктор инициализации
     ProteinSequence(const ProteinSequence& other); // Конструктор копирования
     ProteinSequence& operator=(const ProteinSequence& other); // Оператор присваивания
 

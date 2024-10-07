@@ -3,22 +3,23 @@
 using namespace std;
 
 // Конструктор по умолчанию
-ProteinSequence::ProteinSequence() {}
+ProteinSequence::ProteinSequence() : aminoAcids(), translator() {}
 
 // Конструктор инициализации
-ProteinSequence::ProteinSequence(const std::vector<AminoAcid>& aminoAcids)
-    : aminoAcids(aminoAcids) {
+ProteinSequence::ProteinSequence(const vector<char>& aminoAcids)
+    : aminoAcids(aminoAcids), translator() {
 }
 
 // Конструктор копирования
 ProteinSequence::ProteinSequence(const ProteinSequence& other)
-    : aminoAcids(other.aminoAcids) {
+    : aminoAcids(other.aminoAcids), translator(other.translator) {
 }
 
 // Оператор присваивания
 ProteinSequence& ProteinSequence::operator=(const ProteinSequence& other) {
     if (this != &other) {
         aminoAcids = other.aminoAcids; // Копируем вектор аминокислот
+        translator = other.translator;
     }
     return *this;
 }
