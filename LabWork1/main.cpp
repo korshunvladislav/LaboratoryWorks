@@ -3,6 +3,7 @@
 #include <cassert>
 #include "AminoAcid.h"
 #include "ProteinSequence.h"
+#include "../LabWork2/ExtendedProteinSequence.h"
 
 using namespace std;
 
@@ -12,14 +13,7 @@ int main() {
     seq1.addCodon("UUU"); // F (фенилаланин)
     seq1.addCodon("CUU"); // L (лейцин)
 
-    ProteinSequence seq2;
-    seq2.addCodon("UUU"); // F
-    seq2.addCodon("CUC"); // L
-    seq2.addCodon("GUC"); // V (валин)
-
-    ProteinSequence mergedSeq = ProteinSequence::merge(seq1, seq2);
-
-    cout << "Объединенная последовательность: " << mergedSeq.getSequence() << endl;
+    assert(seq1.getSequence() == "MFL");
 
     // Тестирование конструктора по умолчанию
     ProteinSequence ps_default;
@@ -41,6 +35,19 @@ int main() {
     ProteinSequence ps_assign;
     ps_assign = ps_initial;
     assert(ps_assign.getSequence() == "ACD"); // Проверяем, что последовательность правильная после присваивания
+
+    // Тестирование идентификации
+    assert(ps_default.identify() == "Родительский класс белковой последовательности");
+    assert(ps_initial.identify() == "Родительский класс белковой последовательности");
+
+    // Тестирование класса ExtendedProteinSequence
+    ExtendedProteinSequence nucleotideSeq;
+    nucleotideSeq.synthesizeFromNucleotides("AUGUUUCUU"); // MFL
+
+    assert(nucleotideSeq.getSequence() == "MFL"); // Проверяем, что последовательность правильная
+
+    // Тестирование идентификации для класса-наследника
+    assert(nucleotideSeq.identify() == "Класс наследуемый от Protein Sequence");
 
     // Вывод сообщения об успешном прохождении тестов
     cout << "Все тесты пройдены успешно!" << endl;
